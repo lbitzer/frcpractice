@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5530.robot.subsystems;
 
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,6 +31,12 @@ public class Drivetrain extends Subsystem {
 		
 		right2.changeControlMode(TalonControlMode.Follower);
 		right2.set(RobotMap.rightDeviceNumber);
+		
+		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		left.configEncoderCodesPerRev(1024);
+		
+		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right.configEncoderCodesPerRev(1024);
 	
 	}
 }
