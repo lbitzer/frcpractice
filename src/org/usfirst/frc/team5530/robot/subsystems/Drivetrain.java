@@ -18,19 +18,19 @@ public class Drivetrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	public static CANTalon left   = new CANTalon(RobotMap.leftDeviceNumber);
-	public static CANTalon left2  = new CANTalon(RobotMap.left2DeviceNumber);
-	public static CANTalon right  = new CANTalon(RobotMap.rightDeviceNumber);
-	public static CANTalon right2 = new CANTalon(RobotMap.right2DeviceNumber);
+	public static CANTalon left   = new CANTalon(RobotMap.LeftMotor1);
+	public static CANTalon left2  = new CANTalon(RobotMap.LeftMotor2);
+	public static CANTalon right  = new CANTalon(RobotMap.RightMotor1);
+	public static CANTalon right2 = new CANTalon(RobotMap.RightMotor2);
 			
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		left2.changeControlMode(TalonControlMode.Follower);
-		left2.set(RobotMap.leftDeviceNumber);
+		left2.set(RobotMap.LeftMotor1);
 		
 		right2.changeControlMode(TalonControlMode.Follower);
-		right2.set(RobotMap.rightDeviceNumber);
+		right2.set(RobotMap.RightMotor1);
 		
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.configEncoderCodesPerRev(1024);
