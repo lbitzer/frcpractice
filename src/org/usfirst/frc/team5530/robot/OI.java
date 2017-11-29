@@ -2,8 +2,9 @@ package org.usfirst.frc.team5530.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team5530.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5530.robot.commands.DriveDistance;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,14 +18,24 @@ public class OI {
 	// number it is.
 	Joystick stick1 = new Joystick(0);
 	Joystick stick2 = new Joystick(1);
+	Joystick[] sticks = new Joystick[]{stick1, stick2};
 	
-	// Button button = new JoystickButton(stick, buttonNumber);
-
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
+	Button[][] stickbutton = new Button[2][12];
 	
-
+		private int stick=0;
+		private int button=1;
+		//why is there { before the while?
+		{while (stick<=1){
+			while (button<=12){
+				stickbutton[stick][button-1]= new JoystickButton(sticks[stick],button);
+				button++;
+			}
+			stick++;
+		}}
+	
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of

@@ -18,10 +18,10 @@ public class Drivetrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	CANTalon left   = new CANTalon(RobotMap.leftDeviceNumber);
-	CANTalon left2  = new CANTalon(RobotMap.left2DeviceNumber);
-	CANTalon right  = new CANTalon(RobotMap.rightDeviceNumber);
-	CANTalon right2 = new CANTalon(RobotMap.right2DeviceNumber);
+	public static CANTalon left   = new CANTalon(RobotMap.leftDeviceNumber);
+	public static CANTalon left2  = new CANTalon(RobotMap.left2DeviceNumber);
+	public static CANTalon right  = new CANTalon(RobotMap.rightDeviceNumber);
+	public static CANTalon right2 = new CANTalon(RobotMap.right2DeviceNumber);
 			
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -39,4 +39,5 @@ public class Drivetrain extends Subsystem {
 		right.configEncoderCodesPerRev(1024);
 	
 	}
+	
 }
