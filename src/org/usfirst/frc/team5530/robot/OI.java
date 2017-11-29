@@ -3,6 +3,8 @@ package org.usfirst.frc.team5530.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import org.usfirst.frc.team5530.robot.commands.DriveDistance;
 
@@ -19,10 +21,69 @@ public class OI {
 	Joystick stick1 = new Joystick(0);
 	Joystick stick2 = new Joystick(1);
 	Joystick[] sticks = new Joystick[]{stick1, stick2};
-	
+	XboxController XBController;
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
+	OI(int XBPort, int JSPort1, int JSPort2){
+		XboxController XBController = new XboxController(XBPort);
+		Joystick stick1 = new Joystick(JSPort1);
+		Joystick stick2 = new Joystick(JSPort2);
+		
+		Button[][] stickbutton = new Button[2][12];
+		
+	
+		//why is there { before the while?
+		for(int stick=0; stick<=2; stick++){
+			for(int button=0; button<=12; button++) {
+				stickbutton[stick][button-1]= new JoystickButton(sticks[stick],button);
+			}
+		}
+		
+	}
+	
+	public double getTriggerValue(char side){
+		if(side == 'r'){
+			return XBController.getTriggerAxis(Hand.kRight);
+		
+		}else if(side == 'l'){
+			return XBController.getTriggerAxis(Hand.kLeft);
+			
+		}else{
+			return 0;
+			
+		}
+	}
+	//A method to limit an input double to the range -1.0 to 1.0
+	public double limit(double prelimNumber){
+		if(prelimNumber >= 1.0){
+			return 1.0;
+					
+		}else if(prelimNumber <= -1.0){
+			
+			return -1.0;
+		}else if(prelimNumber < 1.0 && prelimNumber >-1.0){
+			
+			return prelimNumber;
+		}else{
+			
+			return 0;
+		}
+		
+		
+	}
+	//get xAxis value of Xbox joystick
+	public double getStickHorizontal(char side){
+		if(side == 'r'){
+			return limit(XBController.getX(Hand.kRight));
+		
+		}else if(side == 'l'){
+			return limit(XBController.getY(Hand.kLeft));
+			
+		}else{
+			return 0;
+		}
+	}
 	Button[][] stickbutton = new Button[2][12];
 	
 		private int stick=0;
