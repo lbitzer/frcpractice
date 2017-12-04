@@ -15,6 +15,7 @@ import com.ctre.CANTalon.TalonControlMode;
  *
  */
 
+//right side of robot is left side in code
 public class DriveDistance extends Command {
 	
 	public double error = 2;
@@ -42,6 +43,11 @@ public class DriveDistance extends Command {
 		double I = SmartDashboard.getDouble("I");
 		double D = SmartDashboard.getDouble("D");
 		
+		System.out.println(distanceremaining);
+		System.out.println(P);
+		System.out.println(I);
+		System.out.println(D);
+		
 		talon.setPID(P, I, D);
 		talon.set(distanceremaining);
 		
@@ -58,6 +64,8 @@ void endTalon(CANTalon talon){
 	@Override
 	protected void initialize() {
 		
+		System.out.println("running DriveDistance Command");
+		
 		distances.add(SmartDashboard.getNumber("distance"));
 		P.add(SmartDashboard.getNumber("P"));
 		I.add(SmartDashboard.getNumber("I"));
@@ -68,7 +76,7 @@ void endTalon(CANTalon talon){
 		SmartDashboard.putString("I", I.toString());
 		SmartDashboard.putString("D", D.toString());
 		
-	setupTalon(Drivetrain.left);
+	//setupTalon(Drivetrain.left);
 	setupTalon(Drivetrain.right);
 	
 	}
@@ -83,8 +91,9 @@ void endTalon(CANTalon talon){
 	@Override
 	protected boolean isFinished() {
 		if (Drivetrain.left.getPosition()<error && Drivetrain.right.getPosition()<error){
-			return true;
+		//	return true;
 		}
+		System.out.println(Drivetrain.right.getPosition());
 		return false;
 	}
 
@@ -93,12 +102,14 @@ void endTalon(CANTalon talon){
 	protected void end() {
 		endTalon(Drivetrain.left);
 		endTalon(Drivetrain.right);
+		System.out.println("ending DriveDistance Command");
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		System.out.println("interrupted");
 		end();
 	}
 }

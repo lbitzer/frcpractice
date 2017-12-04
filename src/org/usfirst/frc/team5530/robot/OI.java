@@ -35,7 +35,7 @@ public class OI {
 		Button[][] stickbutton = new Button[2][12];
 		
 		for(int stick=0; stick<=1; stick++){
-			for(int button=0; button<=12; button++) {
+			for(int button=1; button<=12; button++) {
 				stickbutton[stick][button-1]= new JoystickButton(sticks[stick],button);
 			}
 		}
