@@ -12,7 +12,9 @@ import org.usfirst.frc.team5530.robot.commands.DriveDistance;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
 public class OI {
+	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -38,8 +40,10 @@ public class OI {
 			}
 		}
 		
+		stickbutton[0][0].whenPressed(new DriveDistance());
+		
 	}
-	
+
 	public double getTriggerValue(char side){
 		if(side == 'r'){
 			return XBController.getTriggerAxis(Hand.kRight);
@@ -82,6 +86,7 @@ public class OI {
 			return 0;
 		}
 	}
+	
 	/*Button[][] stickbutton = new Button[2][12];
 	
 		private int stick=0;
@@ -96,7 +101,7 @@ public class OI {
 		}}*/
 	
 	
-	
+
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
@@ -106,7 +111,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenPressed(new ExampleCommand());
 	
-	stickbutton[0][0].whenPressed(new DriveDistance());
+
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
@@ -115,4 +120,6 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	//{stickbutton[0][0].whenPressed(new DriveDistance());}
 }
