@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
+		oi = new OI(2,0,1);
 		chooser.addDefault("Default Auto", new DriveDistance());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);

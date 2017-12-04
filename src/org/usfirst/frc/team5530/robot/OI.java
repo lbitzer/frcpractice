@@ -32,9 +32,7 @@ public class OI {
 		
 		Button[][] stickbutton = new Button[2][12];
 		
-	
-		//why is there { before the while?
-		for(int stick=0; stick<=2; stick++){
+		for(int stick=0; stick<=1; stick++){
 			for(int button=0; button<=12; button++) {
 				stickbutton[stick][button-1]= new JoystickButton(sticks[stick],button);
 			}
@@ -84,7 +82,7 @@ public class OI {
 			return 0;
 		}
 	}
-	Button[][] stickbutton = new Button[2][12];
+	/*Button[][] stickbutton = new Button[2][12];
 	
 		private int stick=0;
 		private int button=1;
@@ -95,7 +93,9 @@ public class OI {
 				button++;
 			}
 			stick++;
-		}}
+		}}*/
+	
+	
 	
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
@@ -105,6 +105,8 @@ public class OI {
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenPressed(new ExampleCommand());
+	
+	stickbutton[0][0].whenPressed(new DriveDistance());
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
