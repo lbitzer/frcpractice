@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import org.usfirst.frc.team5530.robot.commands.DriveDistance;
+import org.usfirst.frc.team5530.robot.commands.Turn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,6 +42,7 @@ public class OI {
 		}
 		
 		stickbutton[0][0].whenPressed(new DriveDistance());
+		stickbutton[0][1].whenPressed(new Turn());
 		
 	}
 
