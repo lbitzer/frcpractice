@@ -15,10 +15,12 @@ import com.ctre.CANTalon.TalonControlMode;
  *
  */
 
-//right side of robot is left side in code
 public class DriveDistance extends Command {
 	
-	public double error = 2;
+	double initialLeftPosition;
+	double initialRightPosition;
+	
+	public double error = .4;
 	ArrayList distances = new ArrayList();
 	ArrayList P = new ArrayList();
 	ArrayList I = new ArrayList();
@@ -49,7 +51,7 @@ public class DriveDistance extends Command {
 		System.out.println(D);
 		
 		talon.setPID(P, I, D);
-		talon.set(distanceremaining);
+		talon.set(talon.getPosition() + distanceremaining);
 		
 	}
 	
@@ -76,8 +78,11 @@ void endTalon(CANTalon talon){
 		SmartDashboard.putString("I", I.toString());
 		SmartDashboard.putString("D", D.toString());
 		
-	//setupTalon(Drivetrain.left);
+	setupTalon(Drivetrain.left);
 	setupTalon(Drivetrain.right);
+	
+	initialLeftPosition = Drivetrain.left.getPosition();
+	initialRightPosition = Drivetrain.right.getPosition();
 	
 	}
 
@@ -90,10 +95,10 @@ void endTalon(CANTalon talon){
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Drivetrain.left.getPosition()<error && Drivetrain.right.getPosition()<error){
-		//	return true;
+		if (Math.abs(Drivetrain.left.getPosition()-initialLeftPosition)<error && Math.abs(Drivetrain.right.getPosition()-initialRightPosition)<error){
+			return true;
 		}
-		System.out.println(Drivetrain.right.getPosition());
+		//System.out.println(Drivetrain.right.getPosition());
 		return false;
 	}
 
