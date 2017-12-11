@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5530.robot.commands.DriveDistance;
 import org.usfirst.frc.team5530.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team5530.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,7 +22,8 @@ import org.usfirst.frc.team5530.robot.subsystems.Drivetrain;
 public class Robot extends IterativeRobot {
 
 	public static final Drivetrain drivetrain = new Drivetrain();
-	public static OI oi;
+	public static final OI oi = new OI();
+	public static final XboxDrive xboxdrive = new XboxDrive();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -33,7 +35,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		
-		oi = new OI(2,0,1);
 		chooser.addDefault("Default Auto", new DriveDistance());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		xboxdrive.setSpeeds(xboxdrive.getStickHorizontal('l'), xboxdrive.getTriggerValue('r'), xboxdrive.getTriggerValue('l'));
 	}
 
 	/**
