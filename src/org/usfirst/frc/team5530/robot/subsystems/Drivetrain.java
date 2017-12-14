@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team5530.robot.RobotMap;
+import org.usfirst.frc.team5530.robot.commands.*;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -22,10 +23,9 @@ public class Drivetrain extends Subsystem {
 	public static CANTalon left2  = new CANTalon(RobotMap.LeftMotor2);
 	public static CANTalon right  = new CANTalon(RobotMap.RightMotor1);
 	public static CANTalon right2 = new CANTalon(RobotMap.RightMotor2);
-			
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+	public static XboxDrive xboxdrive = new XboxDrive();
+	
+	public static void setFollowing() {
 		left2.changeControlMode(TalonControlMode.Follower);
 		left2.set(RobotMap.LeftMotor1);
 		
@@ -36,7 +36,14 @@ public class Drivetrain extends Subsystem {
 		left.configEncoderCodesPerRev(1024);
 		
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		right.configEncoderCodesPerRev(1024);
+		right.configEncoderCodesPerRev(1024);	
+	}
+			
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefault;Command(new MySpecialCommand());
+		
+		setDefaultCommand(xboxdrive);
 	
 	}
 	

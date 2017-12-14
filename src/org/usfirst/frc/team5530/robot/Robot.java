@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final OI oi = new OI();
-	public static final XboxDrive xboxdrive = new XboxDrive();
+	public final XboxDrive xboxdrive = new XboxDrive();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -98,6 +98,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Scheduler.getInstance().add(xboxdrive);
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		xboxdrive.setSpeeds(xboxdrive.getStickHorizontal('l'), xboxdrive.getTriggerValue('r'), xboxdrive.getTriggerValue('l'));
+		//xboxdrive.setSpeeds(xboxdrive.getStickHorizontal('l'), xboxdrive.getTriggerValue('r'), xboxdrive.getTriggerValue('l'));
 	}
 
 	/**
